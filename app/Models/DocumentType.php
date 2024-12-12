@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Model
+class DocumentType extends Model
 {
       /*
     |--------------------------------------------------------------------------
@@ -12,15 +13,12 @@ class User extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'users';
+    protected $table = 'documnet_types';
     protected $primaryKey = 'id';
     public $timestamps = true;
     // protected $guarded = [];
     protected $fillable = [
-        'name',
-        'last_name',
-        'document_number',
-        'document_type_id'
+        'name'
     ];
 
     // protected $hidden = [
@@ -38,20 +36,11 @@ class User extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function document_types()
+    public function user() : HasMany
     {
-        return $this->belongsTo(DocumentType::class);
+        return $this->hasMany(User::class, 'document_type_id', 'id');
     }
 
-    public function document_types()
-    {
-        return $this->belongsTo(DocumentType::class);
-    }
-
-    public function document_types()
-    {
-        return $this->belongsTo(DocumentType::class);
-    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
